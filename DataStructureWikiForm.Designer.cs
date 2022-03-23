@@ -43,13 +43,13 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.textBoxDefinition = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
-            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +59,7 @@
             this.textBoxSearch.Location = new System.Drawing.Point(448, 27);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(223, 23);
+            this.textBoxSearch.Size = new System.Drawing.Size(223, 27);
             this.textBoxSearch.TabIndex = 0;
             this.textBoxSearch.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxSearch_MouseDoubleClick);
             // 
@@ -72,7 +72,7 @@
             this.buttonSearch.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(112, 28);
-            this.buttonSearch.TabIndex = 1;
+            this.buttonSearch.TabIndex = 9;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = false;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
@@ -83,8 +83,8 @@
             this.textBoxName.Location = new System.Drawing.Point(39, 79);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(223, 23);
-            this.textBoxName.TabIndex = 2;
+            this.textBoxName.Size = new System.Drawing.Size(223, 27);
+            this.textBoxName.TabIndex = 1;
             this.textBoxName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxName_MouseDoubleClick);
             // 
             // textBoxCategory
@@ -93,8 +93,8 @@
             this.textBoxCategory.Location = new System.Drawing.Point(39, 135);
             this.textBoxCategory.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.Size = new System.Drawing.Size(223, 23);
-            this.textBoxCategory.TabIndex = 3;
+            this.textBoxCategory.Size = new System.Drawing.Size(223, 27);
+            this.textBoxCategory.TabIndex = 2;
             // 
             // textBoxStructure
             // 
@@ -102,8 +102,8 @@
             this.textBoxStructure.Location = new System.Drawing.Point(39, 191);
             this.textBoxStructure.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxStructure.Name = "textBoxStructure";
-            this.textBoxStructure.Size = new System.Drawing.Size(223, 23);
-            this.textBoxStructure.TabIndex = 4;
+            this.textBoxStructure.Size = new System.Drawing.Size(223, 27);
+            this.textBoxStructure.TabIndex = 3;
             // 
             // listViewNameCategory
             // 
@@ -142,7 +142,7 @@
             this.buttonAdd.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(112, 28);
-            this.buttonAdd.TabIndex = 6;
+            this.buttonAdd.TabIndex = 5;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -156,7 +156,7 @@
             this.buttonEdit.Margin = new System.Windows.Forms.Padding(4);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(112, 28);
-            this.buttonEdit.TabIndex = 7;
+            this.buttonEdit.TabIndex = 6;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = false;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
@@ -170,7 +170,7 @@
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(112, 28);
-            this.buttonDelete.TabIndex = 8;
+            this.buttonDelete.TabIndex = 7;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
@@ -184,7 +184,7 @@
             this.buttonOpen.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.Size = new System.Drawing.Size(112, 28);
-            this.buttonOpen.TabIndex = 9;
+            this.buttonOpen.TabIndex = 10;
             this.buttonOpen.Text = "Open";
             this.buttonOpen.UseVisualStyleBackColor = false;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
@@ -198,7 +198,7 @@
             this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(112, 28);
-            this.buttonSave.TabIndex = 10;
+            this.buttonSave.TabIndex = 11;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -211,10 +211,11 @@
             this.textBoxDefinition.Multiline = true;
             this.textBoxDefinition.Name = "textBoxDefinition";
             this.textBoxDefinition.Size = new System.Drawing.Size(223, 197);
-            this.textBoxDefinition.TabIndex = 11;
+            this.textBoxDefinition.TabIndex = 4;
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 478);
@@ -224,6 +225,11 @@
             this.statusStrip1.TabIndex = 12;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -231,7 +237,7 @@
             this.label1.Location = new System.Drawing.Point(34, 55);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 16);
+            this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 13;
             this.label1.Text = "Name:";
             // 
@@ -242,7 +248,7 @@
             this.label2.Location = new System.Drawing.Point(34, 112);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.Size = new System.Drawing.Size(101, 20);
             this.label2.TabIndex = 14;
             this.label2.Text = "Category:";
             // 
@@ -253,7 +259,7 @@
             this.label3.Location = new System.Drawing.Point(34, 167);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 16);
+            this.label3.Size = new System.Drawing.Size(105, 20);
             this.label3.TabIndex = 15;
             this.label3.Text = "Structure:";
             // 
@@ -264,7 +270,7 @@
             this.label4.Location = new System.Drawing.Point(34, 223);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 16);
+            this.label4.Size = new System.Drawing.Size(110, 20);
             this.label4.TabIndex = 16;
             this.label4.Text = "Definition:";
             // 
@@ -276,6 +282,7 @@
             this.button1.TabIndex = 17;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonClear
@@ -286,19 +293,14 @@
             this.buttonClear.Location = new System.Drawing.Point(700, 246);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(112, 28);
-            this.buttonClear.TabIndex = 18;
+            this.buttonClear.TabIndex = 8;
             this.buttonClear.Text = "Clear";
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
-            // toolStripStatusLabel
-            // 
-            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
             // DataStructureWikiForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(864, 500);
