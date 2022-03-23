@@ -26,6 +26,7 @@ namespace DataStructuresWiki
         }
 
         // 8.1 use 2D string array, and static variables for array dimensions
+        // new
         static int rowSize = 12;  //x
         static int colSize = 4;  //y
         static int max = 12;
