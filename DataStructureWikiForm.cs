@@ -7,7 +7,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 /*
  * Name/ID: Ellena Begg, 30040389
  * Date: 23 March 2022
- * Version 1.1 Complete prior to Testing other than Binary Search function.
+ * Version 1.2 Complete ready for release.
  * Program Name: Data Structures Wiki
  * Description: C# Assessment Task 1
  *              A small wiki for Data Structure types.
@@ -26,7 +26,6 @@ namespace DataStructuresWiki
         }
 
         // 8.1 use 2D string array, and static variables for array dimensions
-        // new
         static int rowSize = 12;  //x
         static int colSize = 4;  //y
         static int max = 12;
@@ -45,15 +44,11 @@ namespace DataStructuresWiki
         // 8.7 User can select a definition (Name) from the Listbox and all the information is displayed in the appropriate Textboxes
         private void listViewNameCategory_MouseClick(object sender, MouseEventArgs e)
         {
-            //Check array has items
-            if (myWikiArray.Length > 0)
-            {
-                int currentRecord = listViewNameCategory.SelectedIndices[0];
-                textBoxName.Text = myWikiArray[currentRecord, 0];
-                textBoxCategory.Text = myWikiArray[currentRecord, 1];
-                textBoxStructure.Text = myWikiArray[currentRecord, 2];
-                textBoxDefinition.Text = myWikiArray[currentRecord, 3];
-            }
+            int currentRecord = listViewNameCategory.SelectedIndices[0];
+            textBoxName.Text = myWikiArray[currentRecord, 0];
+            textBoxCategory.Text = myWikiArray[currentRecord, 1];
+            textBoxStructure.Text = myWikiArray[currentRecord, 2];
+            textBoxDefinition.Text = myWikiArray[currentRecord, 3];
         }
 
         //	A double mouse click in the Search text box will clear the Search input box
@@ -74,6 +69,7 @@ namespace DataStructuresWiki
         private void DataStructureWikiForm_Load(object sender, EventArgs e)
         {
             textBoxSearch.Focus();
+            buttonSave.Enabled = false;
         }
         #endregion
 
@@ -144,41 +140,48 @@ namespace DataStructuresWiki
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            // NOTE: does not cater for duplicates!!
             // check for no nulls in 4 x textboxes
             if ((!string.IsNullOrWhiteSpace(textBoxName.Text)) || (!string.IsNullOrWhiteSpace(textBoxCategory.Text))
                 || (!string.IsNullOrWhiteSpace(textBoxStructure.Text)) || (!string.IsNullOrWhiteSpace(textBoxDefinition.Text)))
             {
                 // confirm Add with dialog
-                DialogResult dr = MessageBox.Show("Do you want to Add this Data Structure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show("Do you want to Add this Data Structure?", "Confirmation", 
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
-                    if (IsValidCategory(textBoxCategory.Text) || IsValidStructure(textBoxStructure.Text))
+                    if (IsNotDuplicate(textBoxName.Text))
                     {
-                        for (int x = 0; x < rowSize; x++)
+                        if (IsValidCategory(textBoxCategory.Text) || IsValidStructure(textBoxStructure.Text))
                         {
-                            // If there is a free space in the array
-                            if (myWikiArray[x, 0] == "~")
+                            for (int x = 0; x < rowSize; x++)
                             {
-                                myWikiArray[x, 0] = textBoxName.Text; // write data to Array
-                                myWikiArray[x, 1] = textBoxCategory.Text;
-                                myWikiArray[x, 2] = textBoxStructure.Text;
-                                myWikiArray[x, 3] = textBoxDefinition.Text;
+                                // If there is a free space in the array
+                                if (myWikiArray[x, 0] == "~")
+                                {
+                                    myWikiArray[x, 0] = textBoxName.Text; // write data to Array
+                                    myWikiArray[x, 1] = textBoxCategory.Text;
+                                    myWikiArray[x, 2] = textBoxStructure.Text;
+                                    myWikiArray[x, 3] = textBoxDefinition.Text;
 
-                                SortArray();
-                                DisplayArray();
-                                toolStripStatusLabel.Text = "Item successfully added.";
-                                break;
+                                    SortArray();
+                                    DisplayArray();
+                                    toolStripStatusLabel.Text = "Item successfully added.";
+                                    break;
+                                }
+                                else
+                                {
+                                    toolStripStatusLabel.Text = "Insufficient space. Delete an existing Data Structure to add a new one.";
+                                }
                             }
-                            else
-                            {
-                                toolStripStatusLabel.Text = "Insufficient space. Delete an existing Data Structure to add a new one.";
-                            }
+                        } // end check for Valid data
+                        else
+                        {
+                            return; // when either Category or Structure is not valid
                         }
-                    } // end check for Valid data
+                    } // end check for no duplicates
                     else
                     {
-                        return; // when either Category or Structure is not valid
+                        return; // when there is a duplicate. No duplicates permitted.
                     }
                 } // end confirmation with dialog box to add
                 else
@@ -307,6 +310,7 @@ namespace DataStructuresWiki
             {
                 fileName = openFileDialog.FileName;
                 OpenBinaryFile(fileName);
+                buttonSave.Enabled = true;
             }
         } // end buttonOpen_Click()
 
@@ -314,13 +318,6 @@ namespace DataStructuresWiki
         // a binary file called "definitions.dat" which is sorted by Name
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            // Check empty array?
-            if (myWikiArray.Length == 0)
-            {
-                toolStripStatusLabel.Text = "No Data Structures to save.";
-                return;
-            }
-
             //use dialog box
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             //saveFileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
@@ -336,24 +333,30 @@ namespace DataStructuresWiki
             if (dr == DialogResult.OK)
             {
                 fileName = saveFileDialog.FileName;
-
                 SaveBinaryFile(fileName);
             }
         }
         #endregion
 
         #region Utilities
+        /// <summary>
+        /// Render the contents of the 2D array to screen, in the ListView.
+        /// </summary>
         private void DisplayArray()
         {
             listViewNameCategory.Items.Clear();
-            for (int x = 0; x < rowSize; x++) //iterate rows of 2D string array
+            for (int x = 0; x < rowSize; x++) // iterate rows of 2D string array
             {
-                ListViewItem listViewItem = new ListViewItem(myWikiArray[x, 0]); //add first column ("name")
-                listViewItem.SubItems.Add(myWikiArray[x, 1]); //add second column ("category")
+                ListViewItem listViewItem = new ListViewItem(myWikiArray[x, 0]); // add first column ("name")
+                listViewItem.SubItems.Add(myWikiArray[x, 1]); // add second column ("category")
                 listViewNameCategory.Items.Add(listViewItem); // add to listView to render
             }
         }
 
+        /// <summary>
+        /// Save the contents of the 2D array to a Binary file.
+        /// </summary>
+        /// <param name="fileName"></param>
         private void SaveBinaryFile(string fileName)
         {
             try
@@ -365,7 +368,7 @@ namespace DataStructuresWiki
                     {
                         for (int x = 0; x < rowSize; x++) // iterate rows
                         {
-                            bin.Serialize(stream, myWikiArray[x, y]);
+                            bin.Serialize(stream, myWikiArray[x, y]); // 
                         }
                     }
                 }
@@ -373,13 +376,16 @@ namespace DataStructuresWiki
             }
             catch (IOException ex)
             {
-                //For testing TODO swap commenting to show message to user
                 //MessageBox.Show(ex.Message);
                 MessageBox.Show("File could not be saved.\n" + ex.Message);
             }
             //DisplayArray();
         }
 
+        /// <summary>
+        /// Open a Binary file and write contents to the 2D array.
+        /// </summary>
+        /// <param name="fileName"></param>
         private void OpenBinaryFile(string fileName)
         {
             try
@@ -404,6 +410,11 @@ namespace DataStructuresWiki
             DisplayArray();
         }
 
+        /// <summary>
+        /// Confirm the Data Structure CATEGORY value is in one of the valid ones.
+        /// </summary>
+        /// <param name="categoryValue">Data Structure CATEGORY value</param>
+        /// <returns>true when is a valid Category value. false when it is not a valid Category value.</returns>
         private bool IsValidCategory(string categoryValue)
         {
             //(validCategories.Any(s => categoryValue.Contains(s))) alternate code, same as below
@@ -421,6 +432,11 @@ namespace DataStructuresWiki
             }
         }
 
+        /// <summary>
+        /// Confirm the Data Structure STRUCTURE value is in one of the valid ones.
+        /// </summary>
+        /// <param name="structureValue">Data Structure STRUCTURE value</param>
+        /// <returns>true when is a valid Structure value. false when it is not a valid Structure value.</returns>
         private bool IsValidStructure(string structureValue)
         {
             // cater for case invariance
@@ -436,6 +452,25 @@ namespace DataStructuresWiki
             }
         }
 
+        /// <summary>
+        /// Confirm we do not already have this Data Structure NAME in the current list.
+        /// </summary>
+        /// <param name="name">Data Structure NAME value</param>
+        /// <returns>true when is not a duplicate of an existing Name value. false when it is a duplicate of an existing Name value.</returns>
+        private bool IsNotDuplicate(string name)
+        {
+            for (int i = 0; i < max - 1; i++)
+            {
+                if (string.CompareOrdinal(myWikiArray[i, 0], name) == 0)
+                {
+                    MessageBox.Show("That Data Structure already exists.");
+                    textBoxName.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void ClearTextBoxes()
         {
             textBoxName.Clear();
@@ -446,6 +481,9 @@ namespace DataStructuresWiki
         }
 
         // 8.4 Bubble Sort method to sort the 2D array by "Name" ascending
+        /// <summary>
+        /// Bubble Sort the 2D Array by "Name" value, ascending
+        /// </summary>
         private void SortArray()
         {
             for (int i = 0; i < rowSize; i++) // iterate rows (i)

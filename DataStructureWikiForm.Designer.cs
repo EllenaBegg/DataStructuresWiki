@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.textBoxName = new System.Windows.Forms.TextBox();
@@ -50,6 +51,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.buttonClear = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,8 +61,9 @@
             this.textBoxSearch.Location = new System.Drawing.Point(448, 27);
             this.textBoxSearch.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxSearch.Name = "textBoxSearch";
-            this.textBoxSearch.Size = new System.Drawing.Size(223, 27);
+            this.textBoxSearch.Size = new System.Drawing.Size(223, 23);
             this.textBoxSearch.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.textBoxSearch, "Enter Data Structure NAME to search for here.");
             this.textBoxSearch.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxSearch_MouseDoubleClick);
             // 
             // buttonSearch
@@ -74,6 +77,7 @@
             this.buttonSearch.Size = new System.Drawing.Size(112, 28);
             this.buttonSearch.TabIndex = 9;
             this.buttonSearch.Text = "Search";
+            this.toolTip1.SetToolTip(this.buttonSearch, "Search all Data Structures. Based on data in Search TextBox to the left.");
             this.buttonSearch.UseVisualStyleBackColor = false;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
@@ -83,8 +87,9 @@
             this.textBoxName.Location = new System.Drawing.Point(39, 79);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(223, 27);
+            this.textBoxName.Size = new System.Drawing.Size(223, 23);
             this.textBoxName.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.textBoxName, "Data Structure NAME value");
             this.textBoxName.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.textBoxName_MouseDoubleClick);
             // 
             // textBoxCategory
@@ -93,8 +98,9 @@
             this.textBoxCategory.Location = new System.Drawing.Point(39, 135);
             this.textBoxCategory.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCategory.Name = "textBoxCategory";
-            this.textBoxCategory.Size = new System.Drawing.Size(223, 27);
+            this.textBoxCategory.Size = new System.Drawing.Size(223, 23);
             this.textBoxCategory.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.textBoxCategory, "Data Structure CATEGORY value");
             // 
             // textBoxStructure
             // 
@@ -102,8 +108,9 @@
             this.textBoxStructure.Location = new System.Drawing.Point(39, 191);
             this.textBoxStructure.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxStructure.Name = "textBoxStructure";
-            this.textBoxStructure.Size = new System.Drawing.Size(223, 27);
+            this.textBoxStructure.Size = new System.Drawing.Size(223, 23);
             this.textBoxStructure.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.textBoxStructure, "Data Structure STRUCTURE value");
             // 
             // listViewNameCategory
             // 
@@ -119,6 +126,7 @@
             this.listViewNameCategory.Name = "listViewNameCategory";
             this.listViewNameCategory.Size = new System.Drawing.Size(373, 365);
             this.listViewNameCategory.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.listViewNameCategory, "Complete list of all current Data Structures.");
             this.listViewNameCategory.UseCompatibleStateImageBehavior = false;
             this.listViewNameCategory.View = System.Windows.Forms.View.Details;
             this.listViewNameCategory.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listViewNameCategory_MouseClick);
@@ -144,6 +152,8 @@
             this.buttonAdd.Size = new System.Drawing.Size(112, 28);
             this.buttonAdd.TabIndex = 5;
             this.buttonAdd.Text = "Add";
+            this.toolTip1.SetToolTip(this.buttonAdd, "Add a new Data Structure. Based on your entry in the four text boxes to the far l" +
+        "eft.");
             this.buttonAdd.UseVisualStyleBackColor = false;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
@@ -158,6 +168,8 @@
             this.buttonEdit.Size = new System.Drawing.Size(112, 28);
             this.buttonEdit.TabIndex = 6;
             this.buttonEdit.Text = "Edit";
+            this.toolTip1.SetToolTip(this.buttonEdit, "Edit a Data Structure. Based on your entry in the four text boxes on the far left" +
+        ".");
             this.buttonEdit.UseVisualStyleBackColor = false;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
@@ -172,6 +184,7 @@
             this.buttonDelete.Size = new System.Drawing.Size(112, 28);
             this.buttonDelete.TabIndex = 7;
             this.buttonDelete.Text = "Delete";
+            this.toolTip1.SetToolTip(this.buttonDelete, "Delete the selected Data Structure from the List.");
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
@@ -186,6 +199,7 @@
             this.buttonOpen.Size = new System.Drawing.Size(112, 28);
             this.buttonOpen.TabIndex = 10;
             this.buttonOpen.Text = "Open";
+            this.toolTip1.SetToolTip(this.buttonOpen, "Open a saved file which contains a list of Data Structures previously saved.");
             this.buttonOpen.UseVisualStyleBackColor = false;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
@@ -200,6 +214,7 @@
             this.buttonSave.Size = new System.Drawing.Size(112, 28);
             this.buttonSave.TabIndex = 11;
             this.buttonSave.Text = "Save";
+            this.toolTip1.SetToolTip(this.buttonSave, "Save the current list of Data Structures to a file.");
             this.buttonSave.UseVisualStyleBackColor = false;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
@@ -212,6 +227,7 @@
             this.textBoxDefinition.Name = "textBoxDefinition";
             this.textBoxDefinition.Size = new System.Drawing.Size(223, 197);
             this.textBoxDefinition.TabIndex = 4;
+            this.toolTip1.SetToolTip(this.textBoxDefinition, "Data Structure DEFINITION value");
             // 
             // statusStrip1
             // 
@@ -228,7 +244,7 @@
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 16);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // label1
             // 
@@ -237,7 +253,7 @@
             this.label1.Location = new System.Drawing.Point(34, 55);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 20);
+            this.label1.Size = new System.Drawing.Size(54, 16);
             this.label1.TabIndex = 13;
             this.label1.Text = "Name:";
             // 
@@ -248,7 +264,7 @@
             this.label2.Location = new System.Drawing.Point(34, 112);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 20);
+            this.label2.Size = new System.Drawing.Size(79, 16);
             this.label2.TabIndex = 14;
             this.label2.Text = "Category:";
             // 
@@ -259,7 +275,7 @@
             this.label3.Location = new System.Drawing.Point(34, 167);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 20);
+            this.label3.Size = new System.Drawing.Size(80, 16);
             this.label3.TabIndex = 15;
             this.label3.Text = "Structure:";
             // 
@@ -270,7 +286,7 @@
             this.label4.Location = new System.Drawing.Point(34, 223);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 20);
+            this.label4.Size = new System.Drawing.Size(81, 16);
             this.label4.TabIndex = 16;
             this.label4.Text = "Definition:";
             // 
@@ -295,12 +311,13 @@
             this.buttonClear.Size = new System.Drawing.Size(112, 28);
             this.buttonClear.TabIndex = 8;
             this.buttonClear.Text = "Clear";
+            this.toolTip1.SetToolTip(this.buttonClear, "Clear all four text boxes on the far left.");
             this.buttonClear.UseVisualStyleBackColor = false;
             this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // DataStructureWikiForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MintCream;
             this.ClientSize = new System.Drawing.Size(864, 500);
@@ -359,6 +376,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 
