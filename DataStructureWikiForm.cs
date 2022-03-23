@@ -145,7 +145,7 @@ namespace DataStructuresWiki
                 || (!string.IsNullOrWhiteSpace(textBoxStructure.Text)) || (!string.IsNullOrWhiteSpace(textBoxDefinition.Text)))
             {
                 // confirm Add with dialog
-                DialogResult dr = MessageBox.Show("Do you want to Add this Data Structure?", "Confirmation", 
+                DialogResult dr = MessageBox.Show("Do you want to Add this Data Structure?", "Confirmation",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
@@ -207,7 +207,7 @@ namespace DataStructuresWiki
                     || (!string.IsNullOrWhiteSpace(textBoxStructure.Text)) || (!string.IsNullOrWhiteSpace(textBoxDefinition.Text)))
                 {
                     // confirm Edit with dialog
-                    DialogResult dr = MessageBox.Show("Do you want to edit this Data Structure?", 
+                    DialogResult dr = MessageBox.Show("Do you want to edit this Data Structure?",
                         "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (dr == DialogResult.Yes)
                     {
@@ -253,7 +253,7 @@ namespace DataStructuresWiki
             if (listViewNameCategory.SelectedItems.Count > 0)
             {
                 // confirm Delete with dialog
-                DialogResult dr = MessageBox.Show("Do you want to delete this Data Structure?", 
+                DialogResult dr = MessageBox.Show("Do you want to delete this Data Structure?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
                 {
@@ -279,7 +279,7 @@ namespace DataStructuresWiki
             else
             {
                 toolStripStatusLabel.Text = "NOTE: No Data Structure selected to Delete. Select a Data Structure first.";
-            } 
+            }
             ClearTextBoxes();
         } // end buttonDelete_Click()
 
@@ -290,7 +290,7 @@ namespace DataStructuresWiki
         }
 
         // 8.9 Create a LOAD button that will read the information from a binary file
-        // called "definitions.dat" into the 2D array
+        // called "definitions.bin" into the 2D array
         private void buttonOpen_Click(object sender, EventArgs e)
         {
             //use dialog box
@@ -315,7 +315,7 @@ namespace DataStructuresWiki
         } // end buttonOpen_Click()
 
         // 8.8 Create a SAVE button so the information from the 2D array can be written into
-        // a binary file called "definitions.dat" which is sorted by Name
+        // a binary file called "definitions.bin" which is sorted by Name
         private void buttonSave_Click(object sender, EventArgs e)
         {
             //use dialog box
@@ -338,6 +338,7 @@ namespace DataStructuresWiki
         }
         #endregion
 
+        // 8.6	Create a display method that will show the following information in a List box: Name and Category
         #region Utilities
         /// <summary>
         /// Render the contents of the 2D array to screen, in the ListView.
@@ -491,12 +492,12 @@ namespace DataStructuresWiki
                 for (int j = 0; j < rowSize - 1; j++) // iterate rows (j)
                 {
                     // check if next row (j + 1) is alphabetically before this row (j) 
-                    if (string.CompareOrdinal(myWikiArray[j, 0], myWikiArray[j + 1, 0]) > 0) 
+                    if (string.CompareOrdinal(myWikiArray[j, 0], myWikiArray[j + 1, 0]) > 0)
                     {
                         // if it is, swap the two rows in Array
                         for (int k = 0; k < colSize; k++) // iterating all columns to swap the rows
                         {
-                            SwapForSort(j, k); 
+                            SwapForSort(j, k);
                         }
                     }
                 }
