@@ -1,0 +1,3 @@
+Images of Paintings
+Format: png
+Size: 100
